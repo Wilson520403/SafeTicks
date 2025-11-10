@@ -1,44 +1,41 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+ï»¿using System;
 
 namespace SafeTicks
 {
-    public class MgrTimestampDefine
+    public class SafeTimestampDefine
     {
         /// <summary>
-        /// Ã¿ºÁÃëµÄ Tick ÊıÁ¿
+        /// æ¯æ¯«ç§’çš„ Tick æ•°é‡
         /// </summary>
         public const long TICKS_MILLISECOND = 10000;
 
         /// <summary>
-        /// Ã¿ÃëµÄ Tick ÊıÁ¿
+        /// æ¯ç§’çš„ Tick æ•°é‡
         /// </summary>
         public const long TICKS_SECOND = 1000 * TICKS_MILLISECOND;
 
         /// <summary>
-        /// Ã¿·ÖÖÓµÄ Tick ÊıÁ¿
+        /// æ¯åˆ†é’Ÿçš„ Tick æ•°é‡
         /// </summary>
         public const long TICKS_MINUTE = 60 * TICKS_SECOND;
 
         /// <summary>
-        /// Ã¿Ğ¡Ê±µÄ Tick ÊıÁ¿
+        /// æ¯å°æ—¶çš„ Tick æ•°é‡
         /// </summary>
         public const long TICKS_HOUR = 60 * TICKS_MINUTE;
 
         /// <summary>
-        /// Ã¿ÌìµÄ Tick ÊıÁ¿
+        /// æ¯å¤©çš„ Tick æ•°é‡
         /// </summary>
         public const long TICKS_DAY = 24 * TICKS_HOUR;
 
         /// <summary>
-        /// Ã¿ÖÜµÄ Tick ÊıÁ¿
+        /// æ¯å‘¨çš„ Tick æ•°é‡
         /// </summary>
         public const long TICKS_WEEK = TICKS_DAY * 7;
 
         /// <summary>
-        /// ÆğÊ¼Ê±¼ä
+        /// èµ·å§‹æ—¶é—´
         /// </summary>
         public static DateTime TIME_START = new (
             year: 1970 ,
@@ -51,7 +48,7 @@ namespace SafeTicks
         );
 
         /// <summary>
-        /// ÆğÊ¼Ê±¼äµÄÊ±¼ä´Á
+        /// èµ·å§‹æ—¶é—´æ—¶é—´æˆ³
         /// </summary>
         public static long TIME_START_TICKS = TIME_START.Ticks;
     }
