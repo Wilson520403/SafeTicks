@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace SafeTicks
 {
@@ -10,7 +11,7 @@ namespace SafeTicks
         /// <summary>
         /// 来源
         /// </summary>
-        //public MgrTicks src;
+        public MgrTicks src;
 
         /// <summary>
         /// 当前系统的时间戳 - 不安全，完全取自于环境，可能前后跃迁
@@ -153,7 +154,7 @@ namespace SafeTicks
             {
                 long passed = idMs - _idMs;
                 _idMs = idMs;
-                //src.env.OnUpdatedMillisecond (passed);
+                src.env.OnUpdatedMillisecond (passed);
             }
 
             // 秒的事件
@@ -162,7 +163,7 @@ namespace SafeTicks
             {
                 long passed = idSeconds - _idSeconds;
                 _idSeconds = idSeconds;
-                //src.env.OnUpdatedSecond (passed);
+                src.env.OnUpdatedSecond (passed);
             }
 
             // 天的事件
@@ -171,7 +172,7 @@ namespace SafeTicks
             {
                 long passed = idDays - _idDays;
                 _idDays = idDays;
-                //src.env.OnUpdatedMillisecond (passed);
+                src.env.OnUpdateDay (passed);
             }
         }
 

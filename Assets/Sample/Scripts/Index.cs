@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using SafeTicks;
 using UnityEngine;
 
 namespace Sample
@@ -8,7 +10,13 @@ namespace Sample
     {
         private void Awake ()
         {
-            
+            MgrTicks.local.Init (MgrTicks.ParseTicksToTimestampMillisecond (DateTime.Now.Ticks));
+            MgrTicks.local.OnEmitAble ();
+        }
+
+        private void Update ()
+        {
+            MgrTicks.local.OnUpdate ();
         }
     }
 }
