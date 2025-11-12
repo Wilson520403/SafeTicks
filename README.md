@@ -1,23 +1,57 @@
-# 前言
-一般通常认为时间总是向前流动的。然而在实际生产环境中，系统时间可能因为用户误操作或其它原因往后跳跃了。这种"时间倒流"现象可能导致数据混乱、ID重复等严重问题。所以不能直接将时间戳立即同步为系统的时间戳，而是根据当前系统时间的增量，去推进安全时间戳
+## Overview
 
-# 核心类说明
-* SafeTimestamp：安全的时间戳，用于防止客户端时光倒流
-* MgrTicks：时间戳管理器
-* MgrTicksEnv：时间戳的运行环境，时间可能分为本地时间以及服务器时间
+In typical scenarios, time is perceived as always moving forward. However, in practical production environments, system time may unexpectedly jump backward due to user misoperation or other reasons. This "time rollback" phenomenon can lead to serious issues like data corruption and ID duplication .
 
-# 如何开始
-以本地环境的时间为例子，初始化需要传入当前的系统时间戳
+Instead of immediately synchronizing timestamps with the potentially unstable system time, the SafeTimestamp solution advances safe timestamps incrementally based on the current system time progression, ensuring temporal consistency and preventing anomalies caused by time reversals .
 
-`MgrTicks.local.Init (MgrTicks.ParseTicksToTimestampMillisecond (DateTime.Now.Ticks));` 
+## Core Components
 
-接着通知计时器开始进行事件抛出，这一步往往在获得环境的时间戳后进行，即初始化后进行
+### SafeTimestamp
 
-`MgrTicks.local.OnEmitAble (); `
+A secure timestamp class designed to prevent client-side time rollbacks, maintaining reliable temporal sequencing even when system time becomes unreliable.
 
-逐帧更新时间，需要在MonoBehaviour的Update函数中去调用
+### MgrTicks
 
-`MgrTicks.local.OnUpdate (); `
+The timestamp manager that orchestrates timestamp operations and ensures the integrity of temporal progression across the application.
 
-# 演示案例
-Assets\Sample\Scenes\SampleScene为演示案例
+### MgrTicksEnv
+
+The runtime environment for timestamps, supporting different time contexts such as local time and server time, providing flexibility for various application needs.
+
+## Getting Started
+
+### Initializing with Local Environment Time
+
+To begin using the system with local environment time, initialize it with the current system timestamp:
+
+```
+MgrTicks.local.Init(MgrTicks.ParseTicksToTimestampMillisecond(DateTime.Now.Ticks));
+```
+
+This initialization process converts the system's current time into a reliable timestamp format that the SafeTimestamp system can manage .
+
+### Enabling Event Emission
+
+After initializing with the environment timestamp, enable event emission by calling:
+
+```
+MgrTicks.local.OnEmitAble();
+```
+
+This step activates the timer event system, allowing the timestamp manager to begin broadcasting temporal events throughout the application.
+
+### Frame-by-Frame Updates
+
+For continuous time management, call the update method in your MonoBehaviour's Update function:
+
+```
+MgrTicks.local.OnUpdate();
+```
+
+This ensures the timestamp system processes time increments consistently with your application's frame rate, maintaining accurate temporal progression .
+
+## Demonstration
+
+A complete sample scene is available at `Assets\Sample\Scenes\SampleScene`demonstrating the implementation and usage of the SafeTimestamp system in a practical context.
+
+This approach provides a robust solution for maintaining temporal integrity in applications where system time reliability cannot be guaranteed, particularly important in game development, financial applications, and any system requiring consistent temporal sequencing .

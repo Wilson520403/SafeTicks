@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace SafeTicks
 {
@@ -10,7 +11,7 @@ namespace SafeTicks
         /// <summary>
         /// 可以接受的最大时间误差，60 秒，否则重新同步时间
         /// </summary>
-        static long ABS_MAX = 60 * 1000 * 10000;
+        static long ABS_MAX = 10 * 1000 * 10000;
 
         /// <summary>
         /// 进入该状态时候的时间戳
