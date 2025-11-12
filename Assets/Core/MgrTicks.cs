@@ -49,6 +49,10 @@ namespace SafeTicks
         /// </summary>
         public MgrTicksStatusLoaded statusLoaded;
 
+        public  Action<float> OnUpdatedSecond;
+
+        public  Action<float> OnUpdatedMillisecond;
+
         public MgrTicks (MgrTicksEnv env)
         {
             // 绑定运行环境

@@ -1,5 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Sample;
+using UnityEngine;
 
 namespace SafeTicks
 {
@@ -14,8 +15,11 @@ namespace SafeTicks
         /// <returns></returns>
         public override async Task<long> GetTimestampMillisecond ()
         {
-            return MgrTicks.ParseTicksToTimestampMillisecond (DateTime.Now.Ticks);
+            return MgrTicks.ParseTicksToTimestampMillisecond (System.DateTime.Now.Ticks);
         }
+
+        float _sec;
+        float _millisec;
 
         /// <summary>
         /// 事件派发 - 渡过了数秒
@@ -23,7 +27,8 @@ namespace SafeTicks
         /// <param name="passed"></param>
         public override void OnUpdatedSecond (float passed)
         {
-
+            _sec += passed;
+            mgrTicks.OnUpdatedSecond (_sec);
         }
 
         /// <summary>
@@ -32,7 +37,8 @@ namespace SafeTicks
         /// <param name="passed"></param>
         public override void OnUpdatedMillisecond (float passed)
         {
-
+            _millisec += passed;
+            mgrTicks.OnUpdatedMillisecond (_millisec);
         }
     }
 }
