@@ -1,3 +1,5 @@
+[简体中文](https://github.com/Wilson520403/SafeTicks/blob/main/README%20-%20Ch.md)
+
 ## Overview
 
 In typical scenarios, time is perceived as always moving forward. However, in practical production environments, system time may unexpectedly jump backward due to user misoperation or other reasons. This "time rollback" phenomenon can lead to serious issues like data corruption and ID duplication .
